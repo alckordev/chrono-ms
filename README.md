@@ -1,11 +1,11 @@
-# @iscodex/ms-parser
+# chrono-ms
 
-A lightweight, TypeScript-first library for parsing and formatting time durations with human-readable strings.
+A lightweight, TypeScript-first library for parsing and formatting time durations.
 
-[![NPM version](https://img.shields.io/npm/v/@iscodex/ms-parser?color=32A9C3&labelColor=1B3C4A&label=npm&logo=npm)](https://www.npmjs.com/package/@iscodex/ms-parser)
-[![NPM downloads](https://img.shields.io/npm/dm/@iscodex/ms-parser?color=32A9C3&labelColor=1B3C4A&label=downloads&logo=npm)](https://www.npmjs.com/package/@iscodex/ms-parser)
-[![NPM License](https://img.shields.io/npm/l/@iscodex/ms-parser?color=32A9C3&labelColor=1B3C4A&label=license&logo=github)](https://www.npmjs.com/package/@iscodex/ms-parser)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/iscodex/ms-parser/ci.yml?color=32A9C3&labelColor=1B3C4A&label=CI&logo=github)](https://github.com/iscodex/ms-parser/actions)
+[![NPM version](https://img.shields.io/npm/v/chrono-ms?color=32A9C3&labelColor=1B3C4A&label=npm&logo=npm)](https://www.npmjs.com/package/chrono-ms)
+[![NPM downloads](https://img.shields.io/npm/dm/chrono-ms?color=32A9C3&labelColor=1B3C4A&label=downloads&logo=npm)](https://www.npmjs.com/package/chrono-ms)
+[![NPM License](https://img.shields.io/npm/l/chrono-ms?color=32A9C3&labelColor=1B3C4A&label=license&logo=github)](https://www.npmjs.com/package/chrono-ms)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/iscodex/chrono-ms/ci.yml?color=32A9C3&labelColor=1B3C4A&label=CI&logo=github)](https://github.com/iscodex/chrono-ms/actions)
 
 ## Features
 
@@ -13,21 +13,21 @@ A lightweight, TypeScript-first library for parsing and formatting time duration
 - 📝 **TypeScript-first**: Full type safety and IntelliSense support
 - 🔄 **Bidirectional**: Parse strings to milliseconds and format milliseconds to strings
 - 🎯 **Precise**: Handles decimal values and negative numbers
-- 📚 **Comprehensive**: Supports all common time units
+- 📚 **Comprehensive**: Supports all common time units including months
 - 🧪 **Well-tested**: >95% test coverage
 
 ## Installation
 
 ```bash
-npm install @iscodex/ms-parser
+npm install chrono-ms
 ```
 
 ```bash
-yarn add @iscodex/ms-parser
+yarn add chrono-ms
 ```
 
 ```bash
-pnpm add @iscodex/ms-parser
+pnpm add chrono-ms
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ pnpm add @iscodex/ms-parser
 ### Basic Usage
 
 ```typescript
-import ms from '@iscodex/ms-parser';
+import ms from 'chrono-ms';
 
 // Parse string to milliseconds
 ms('2 hours'); // 7200000
@@ -47,7 +47,7 @@ ms('1y'); // 31557600000
 // Format milliseconds to string
 ms(60000); // "1m"
 ms(2 * 60 * 1000); // "2m"
-ms(ms('10 hours')); // "10h"
+ms(ms('10 hours') as number); // "10h"
 ms(60000, { long: true }); // "1 minute"
 ms(2 * 60 * 1000, { long: true }); // "2 minutes"
 ```
@@ -55,7 +55,7 @@ ms(2 * 60 * 1000, { long: true }); // "2 minutes"
 ### Individual Functions
 
 ```typescript
-import { parse, format } from '@iscodex/ms-parser';
+import { parse, format } from 'chrono-ms';
 
 // Parse only
 const milliseconds = parse('1.5h'); // 5400000
@@ -68,33 +68,33 @@ const longFormat = format(3600000, { long: true }); // "1 hour"
 ### Compound Strings with `parseMultiple`
 
 ```typescript
-import { parseMultiple } from '@iscodex/ms-parser';
+import { parseMultiple } from 'chrono-ms';
 
-parseMultiple('1h 30m');    // 5400000
+parseMultiple('1h 30m'); // 5400000
 parseMultiple('2d 4h 30m'); // 189000000
-parseMultiple('1w 3d');     // 864000000
+parseMultiple('1w 3d'); // 864000000
 ```
 
 ### Safe Parsing with `tryParse`
 
 ```typescript
-import { tryParse } from '@iscodex/ms-parser';
+import { tryParse } from 'chrono-ms';
 
 // Returns null instead of throwing on invalid input
-tryParse('2h');      // 7200000
+tryParse('2h'); // 7200000
 tryParse('invalid'); // null
-tryParse('');        // null
+tryParse(''); // null
 ```
 
 ### Verbose Format
 
 ```typescript
-import { format } from '@iscodex/ms-parser';
+import { format } from 'chrono-ms';
 
-format(5400000, { verbose: true });              // "1h 30m"
-format(5400000, { verbose: true, long: true });  // "1 hour 30 minutes"
-format(3661000, { verbose: true });              // "1h 1m 1s"
-format(90000,   { verbose: true });              // "1m 30s"
+format(5400000, { verbose: true }); // "1h 30m"
+format(5400000, { verbose: true, long: true }); // "1 hour 30 minutes"
+format(3661000, { verbose: true }); // "1h 1m 1s"
+format(90000, { verbose: true }); // "1m 30s"
 ```
 
 ### Advanced Usage
@@ -105,7 +105,7 @@ import ms, {
   format,
   type FormatOptions,
   type ParseOptions,
-} from '@iscodex/ms-parser';
+} from 'chrono-ms';
 
 // Custom parsing options
 const result = parse('30m', { maxLength: 50 });
@@ -256,7 +256,7 @@ format(5400000, { verbose: true, long: true }); // "1 hour 30 minutes"
 ### Months
 
 ```typescript
-parse('1mo');      // 2592000000  (30 days)
+parse('1mo'); // 2592000000  (30 days)
 parse('6 months'); // 15552000000
 ```
 

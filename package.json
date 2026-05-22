@@ -1,8 +1,8 @@
 {
-  "name": "@iscodex/ms-parser",
-  "version": "1.0.2",
+  "name": "chrono-ms",
+  "version": "1.1.0",
   "type": "module",
-  "description": "A lightweight, TypeScript-first library for parsing and formatting time durations with human-readable strings",
+  "description": "A lightweight, TypeScript-first library for parsing and formatting time durations",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -37,6 +37,7 @@
     "duration",
     "parser",
     "formatter",
+    "chrono",
     "ms",
     "milliseconds",
     "typescript"
@@ -45,12 +46,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iscodex/ms-parser.git"
+    "url": "https://github.com/iscodex/chrono-ms.git"
   },
   "bugs": {
-    "url": "https://github.com/iscodex/ms-parser/issues"
+    "url": "https://github.com/iscodex/chrono-ms/issues"
   },
-  "homepage": "https://github.com/iscodex/ms-parser#readme",
+  "homepage": "https://github.com/iscodex/chrono-ms#readme",
   "devDependencies": {
     "@eslint/js": "^9.35.0",
     "@rollup/plugin-typescript": "^12.1.4",
